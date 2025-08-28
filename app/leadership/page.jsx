@@ -23,60 +23,32 @@ const LeadershipPage = () => {
 
   const teamMembers = [
     {
-      name: "Sarah Adebayo",
+      name: "Victor Solomon",
       role: "GTM Strategist",
-      bio: "Expert in campaign design with 8+ years in fintech. Led successful market entries for 3 major fintech companies across West Africa.",
-      image:
-        "https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg",
+      bio: "Crypto market analyst with deep expertise in blockchain, stablecoins, and Web3 adoption. Helps fintech brands expand into African markets through strategic insights and regulatory understanding.",
+      image: "/victor.jpg",
       skills: ["Market Analysis", "Strategic Planning", "Campaign Development"],
     },
     {
-      name: "Kwame Asante",
+      name: "Noah Azube",
       role: "Partnerships Manager",
-      bio: "Strategic partnerships specialist with extensive network across African tech ecosystem. Former business development lead at major telecommunications company.",
-      image:
-        "https://images.pexels.com/photos/2381069/pexels-photo-2381069.jpeg",
+      bio: "Partnerships expert with a strong network across Africa’s tech scene. Former business development lead at a major telecom company.",
+      image: "/noah.jpg",
       skills: [
         "Business Development",
         "Relationship Building",
         "Deal Structuring",
       ],
     },
-    {
-      name: "Amina Hassan",
-      role: "Local Market Lead - East Africa",
-      bio: "Deep expertise in East African markets with focus on mobile money integration and regulatory compliance. Fluent in Swahili and English.",
-      image:
-        "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg",
-      skills: ["Market Research", "Regulatory Affairs", "Local Networks"],
-    },
-    {
-      name: "Tunde Ogundimu",
-      role: "Local Market Lead - West Africa",
-      bio: "Specializes in Nigerian and Ghanaian markets with proven track record in crypto and fintech adoption strategies. Former fintech startup founder.",
-      image:
-        "https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg",
-      skills: ["Startup Ecosystem", "Crypto Adoption", "Market Penetration"],
-    },
-    {
-      name: "Fatima Al-Rashid",
-      role: "Creative Lead",
-      bio: "Award-winning creative director with expertise in Web3 and blockchain visual communication. Led brand campaigns for global tech companies.",
-      image:
-        "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg",
-      skills: ["Brand Design", "Digital Creative", "Campaign Strategy"],
-    },
   ];
 
-  const ceoMessage = `Welcome to AGTM Partner. As the founder, I'm passionate about bridging global innovation with Africa's digital boom. 
+  const ceoMessage = `Web3 Marketer | DevRel | Software Developer | Community Builder
 
-Having worked at the forefront of Web3 adoption across the continent, I've witnessed firsthand the immense potential that exists when global technology meets local market understanding. My journey through leading partnerships at Ledger, driving growth strategies at Bitget, and facilitating market entry for BoundlessPay has taught me that success in Africa isn't just about having great technology – it's about building authentic relationships, understanding cultural nuances, and creating solutions that truly serve local needs.
+A dynamic force at the intersection of tech and community. I connect Web3 innovation with real human impact—coding by day, scaling communities by night, and bridging devs with the tools they need to thrive. Whether it's building decentralized solutions or growing ecosystems, I get things done. With great passion for African growth. 
 
-Africa represents the next frontier of digital transformation. With over 1.4 billion people increasingly connected through mobile technology, the continent offers unprecedented opportunities for Web3 and fintech innovation. However, navigating this landscape requires more than traditional market entry strategies. It demands deep local insights, cultural sensitivity, and long-term commitment to community development.
+Hobbies: Planetary researcher (ever wondered why the planet is green?), travelling, and chasing knowledge with new perspectives.
 
-At AGTM Partner, we don't just help companies enter markets – we help them become part of the African story. We believe in sustainable growth that benefits not just our clients, but the communities they serve. Our approach combines global best practices with authentic local expertise, ensuring that every partnership we facilitate creates lasting value for all stakeholders.
-
-The future of global finance and technology will be written in Africa, and I'm excited to help international companies be part of that narrative while supporting local talent and innovation ecosystems across the continent.`;
+Let’s build the future—together.`;
 
   return (
     <div className="min-h-screen">
