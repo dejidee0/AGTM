@@ -89,7 +89,7 @@ const HomePage = () => {
             src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
             alt="African Digital Innovation"
             fill
-            className="object-cover opacity-20"
+            className="object-cover opacity-40"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
@@ -109,7 +109,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Your Gateway to{" "}
-              <span className="text-gradient">
+              <span className="text-primary">
                 Africa&lsquo;s Digital Economy
               </span>
             </motion.h1>

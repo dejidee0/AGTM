@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import {
   Shield,
   Target,
@@ -28,6 +29,34 @@ const AboutPage = () => {
       },
     },
   };
+
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch((error) => {
+              console.error("Autoplay failed:", error);
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Trigger when 50% of the video is visible
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.unobserve(video);
+    };
+  }, []);
 
   const coreValues = [
     {
@@ -285,7 +314,8 @@ const AboutPage = () => {
                   </p>
                   <div className="relative w-full max-w-sm mx-auto aspect-[9/16] rounded-xl overflow-hidden shadow-lg border border-neutral-100">
                     <video
-                      className="w-full h-full object-contain bg-black"
+                      ref={videoRef}
+                      className="w-full h-full object-contain"
                       src="/about.mov"
                       poster="/about-poster.jpg"
                       controls

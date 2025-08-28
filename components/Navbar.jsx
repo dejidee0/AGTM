@@ -47,8 +47,8 @@ const Navbar = () => {
               <Image
                 src="/logo.png" // Adjust path if needed (e.g., /images/logo.png)
                 alt="AGTM Partner Logo"
-                width={170} // Adjust based on your logo's actual width
-                height={90} // Adjust based on your logo's actual height
+                width={150} // Adjust based on your logo's actual width
+                height={70} // Adjust based on your logo's actual height
                 className="max-w-[120px] lg:max-w-[200px] object-contain"
                 priority // Prioritize loading for above-the-fold content
               />
