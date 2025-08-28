@@ -25,7 +25,7 @@ const HomePage = () => {
   };
 
   const pastClients = [
-    { name: "Ledger", logo: "/clients/ledget.jpg" },
+    { name: "Ledger", logo: "/clients/ledger.jpg" }, // Corrected typo: 'ledget' to 'ledger'
     { name: "Bitget", logo: "/clients/bitget.jpg" },
     { name: "BoundlessPay", logo: "/clients/boundlesspay.jpg" },
     { name: "Bitmana", logo: "/clients/bitmana.jpg" },
@@ -77,22 +77,22 @@ const HomePage = () => {
   ];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <Navbar />
       <Popup />
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden">
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
             src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
             alt="African Digital Innovation"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-80"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -115,7 +115,7 @@ const HomePage = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl text-neutral-300 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl text-neutral-700 mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -159,28 +159,14 @@ const HomePage = () => {
 
           {/* Floating Elements */}
           <motion.div
-            className="absolute top-1/4 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl"
-            animate={{
-              y: [-20, 20, -20],
-              x: [-10, 10, -10],
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            className="absolute top-1/4 left-4 sm:left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl hidden sm:block"
+            animate={{ y: [-20, 20, -20], x: [-10, 10, -10] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-10 w-16 h-16 bg-secondary/30 rounded-full blur-lg"
-            animate={{
-              y: [20, -20, 20],
-              x: [10, -10, 10],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            className="absolute bottom-1/4 right-4 sm:right-10 w-16 h-16 bg-secondary/30 rounded-full blur-lg hidden sm:block"
+            animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
       </section>
@@ -206,8 +192,8 @@ const HomePage = () => {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {features.map((feature, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {features.map((feature) => (
                 <motion.div
                   key={feature.title}
                   variants={fadeInUp}
@@ -267,16 +253,13 @@ const HomePage = () => {
                     alt="African Innovation"
                     width={600}
                     height={400}
-                    className="w-full h-80 object-cover"
+                    className="w-full h-80 object-cover max-w-full"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
                 </div>
                 <motion.div
-                  className="absolute -bottom-6 -right-6 w-24 h-24 bg-secondary rounded-full blur-2xl opacity-60"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.6, 0.8, 0.6],
-                  }}
+                  className="absolute -bottom-6 right-0 sm:-right-6 w-24 h-24 bg-secondary rounded-full blur-2xl opacity-60 hidden sm:block"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.6, 0.8, 0.6] }}
                   transition={{
                     duration: 4,
                     repeat: Infinity,
@@ -309,11 +292,11 @@ const HomePage = () => {
               </p>
             </motion.div>
 
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} className="overflow-x-hidden">
               <Carousel items={pastClients} title="Past Clients" />
             </motion.div>
 
-            <motion.div variants={fadeInUp}>
+            <motion.div variants={fadeInUp} className="overflow-x-hidden">
               <Carousel items={partners} title="Strategic Partners" />
             </motion.div>
           </motion.div>
