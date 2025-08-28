@@ -128,7 +128,7 @@ The future of global finance and technology will be written in Africa, and I'm e
                     transition={{ duration: 0.3 }}
                   >
                     <Image
-                      src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg"
+                      src="/leader.jpg"
                       alt="Godspower Effiong - CEO"
                       width={400}
                       height={500}
