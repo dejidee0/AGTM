@@ -105,7 +105,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center space-x-2 text-neutral-300">
                 <Phone size={16} />
-                <span>+234 XXX XXX XXXX</span>
+                <span>+2349154100476</span>
               </div>
             </div>
           </motion.div>

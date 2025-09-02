@@ -140,29 +140,116 @@ const AboutPage = () => {
     <div className="min-h-screen">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section with Video */}
       <section className="pt-24 pb-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto text-center"
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className="max-w-6xl mx-auto"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-neutral-400 mb-6">
-              About <span className="text-gradient">AGTM Partner</span>
-            </h1>
-            <p className="text-lg lg:text-xl text-neutral-300 leading-relaxed">
-              We are Africa&apos;s leading Go-To-Market agency, bridging the gap
-              between global innovation and local market success through
-              strategic partnerships and deep cultural understanding.
-            </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Content Column */}
+              <motion.div variants={fadeInUp} className="space-y-6">
+                <h1 className="text-4xl lg:text-5xl font-bold text-neutral-400">
+                  About <span className="text-gradient">AGTM Partner</span>
+                </h1>
+                <p className="text-lg lg:text-xl text-neutral-300 leading-relaxed">
+                  We are Africa's leading Go-To-Market agency, bridging the gap
+                  between global innovation and local market success through
+                  strategic partnerships and deep cultural understanding.
+                </p>
+                <p className="text-neutral-300 leading-relaxed">
+                  Our approach combines global best practices with local
+                  expertise to drive meaningful digital transformation across
+                  the continent.
+                </p>
+              </motion.div>
+
+              {/* Video Column */}
+              <motion.div
+                variants={fadeInUp}
+                className="flex justify-center lg:justify-end"
+              >
+                <div className="relative w-full max-w-sm aspect-[9/16] rounded-xl overflow-hidden shadow-xl border border-neutral-200">
+                  <video
+                    ref={videoRef}
+                    className="w-full h-full object-cover"
+                    src="/about.mov"
+                    poster="/about-poster.jpg"
+                    controls
+                    muted
+                    preload="metadata"
+                    loading="lazy"
+                    playsInline
+                  >
+                    <source src="/about.mov" type="video/mp4" />
+                    Your browser does not support the video tag. Please try
+                    viewing in a different browser.
+                  </video>
+                  {/* Decorative overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+              <motion.div variants={fadeInUp} className="space-y-8">
+                <div>
+                  <h2 className="text-3xl font-bold text-neutral-400 mb-6">
+                    Our Mission
+                  </h2>
+                  <p className="text-lg text-neutral-300 leading-relaxed mb-6">
+                    To empower global Web3 and fintech companies to successfully
+                    enter and thrive in African markets through strategic
+                    partnerships, localized marketing, and deep market insights.
+                  </p>
+                  <p className="text-neutral-300 leading-relaxed">
+                    We believe in creating sustainable value that benefits not
+                    just our clients, but also the local communities and
+                    economies we serve.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeInUp} className="space-y-8">
+                <div>
+                  <h2 className="text-3xl font-bold text-neutral-400 mb-6">
+                    Our Vision
+                  </h2>
+                  <p className="text-lg text-neutral-300 leading-relaxed mb-6">
+                    To become Africa's leading Go-To-Market partner,
+                    facilitating the continent's digital transformation while
+                    creating sustainable value for all stakeholders.
+                  </p>
+                  <p className="text-neutral-300 leading-relaxed">
+                    We envision a future where Africa is recognized as a global
+                    hub for digital innovation, where local talent thrives, and
+                    where technology serves as a bridge to prosperity for all.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* Core Values Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
@@ -177,7 +264,7 @@ const AboutPage = () => {
               </h2>
               <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
                 These fundamental principles guide everything we do and shape
-                how we serve our clients and contribute to Africa&apos;s digital
+                how we serve our clients and contribute to Africa's digital
                 transformation.
               </p>
             </motion.div>
@@ -187,7 +274,7 @@ const AboutPage = () => {
                 <motion.div
                   key={value.title}
                   variants={fadeInUp}
-                  className="bg-neutral-50 p-8 rounded-xl border border-neutral-100 hover:shadow-lg transition-all duration-300 text-center"
+                  className="bg-white p-8 rounded-xl border border-neutral-100 hover:shadow-lg transition-all duration-300 text-center"
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
                   <motion.div
@@ -209,7 +296,7 @@ const AboutPage = () => {
       </section>
 
       {/* Competitive Advantages */}
-      <section className="py-20 bg-neutral-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
@@ -234,7 +321,7 @@ const AboutPage = () => {
                 <motion.div
                   key={advantage.title}
                   variants={fadeInUp}
-                  className="bg-white p-6 lg:p-8 rounded-xl border border-neutral-100 shadow-sm hover:shadow-lg transition-all duration-300"
+                  className="bg-neutral-50 p-6 lg:p-8 rounded-xl border border-neutral-100 shadow-sm hover:shadow-lg transition-all duration-300"
                   whileHover={{ x: 10 }}
                 >
                   <div className="flex items-start space-x-6">
@@ -268,94 +355,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Mission & Vision Extended */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-            className="max-w-6xl mx-auto"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <motion.div variants={fadeInUp} className="space-y-8">
-                <div>
-                  <h2 className="text-3xl font-bold text-neutral-400 mb-6">
-                    Our Mission
-                  </h2>
-                  <p className="text-lg text-neutral-300 leading-relaxed mb-6">
-                    To empower global Web3 and fintech companies to successfully
-                    enter and thrive in African markets through strategic
-                    partnerships, localized marketing, and deep market insights.
-                  </p>
-                  <p className="text-neutral-300 leading-relaxed">
-                    We believe in creating sustainable value that benefits not
-                    just our clients, but also the local communities and
-                    economies we serve. Our approach combines global best
-                    practices with local expertise to drive meaningful digital
-                    transformation across the continent.
-                  </p>
-                </div>
-              </motion.div>
-
-              {/* Video Section */}
-              <motion.div
-                variants={fadeInUp}
-                className="space-y-8 lg:col-span-2 text-center"
-              >
-                <div>
-                  <h2 className="text-3xl font-bold text-neutral-400 mb-6">
-                    Our Story in Motion
-                  </h2>
-                  <p className="text-lg text-neutral-300 max-w-3xl mx-auto mb-8">
-                    Watch how AGTM Partner is shaping Africa&apos;s digital
-                    future through innovation and collaboration.
-                  </p>
-                  <div className="relative w-full max-w-sm mx-auto aspect-[9/16] rounded-xl overflow-hidden shadow-lg border border-neutral-100">
-                    <video
-                      ref={videoRef}
-                      className="w-full h-full object-contain"
-                      src="/about.mov"
-                      poster="/about-poster.jpg"
-                      controls
-                      muted
-                      preload="metadata"
-                      loading="lazy"
-                      playsInline
-                    >
-                      <source src="/about.mov" type="video/mp4" />
-                      Your browser does not support the video tag. Please try
-                      viewing in a different browser.
-                    </video>
-                  </div>
-                </div>
-              </motion.div>
-
-              <motion.div variants={fadeInUp} className="space-y-8">
-                <div>
-                  <h2 className="text-3xl font-bold text-neutral-400 mb-6">
-                    Our Vision
-                  </h2>
-                  <p className="text-lg text-neutral-300 leading-relaxed mb-6">
-                    To become Africa&apos;s leading Go-To-Market partner,
-                    facilitating the continent&apos;s digital transformation
-                    while creating sustainable value for all stakeholders.
-                  </p>
-                  <p className="text-neutral-300 leading-relaxed">
-                    We envision a future where Africa is recognized as a global
-                    hub for digital innovation, where local talent thrives, and
-                    where technology serves as a bridge to prosperity for all.
-                    Through our work, we&apos;re building that future, one
-                    partnership at a time.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Call to Action */}
       <section className="py-20 bg-gradient-to-br from-primary/10 to-secondary/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -376,8 +375,8 @@ const AboutPage = () => {
               variants={fadeInUp}
               className="text-lg text-neutral-300 mb-8"
             >
-              Let&apos;s explore how our values and expertise can drive your
-              success in Africa&apos;s dynamic digital markets.
+              Let's explore how our values and expertise can drive your success
+              in Africa's dynamic digital markets.
             </motion.p>
             <motion.div variants={fadeInUp}>
               <motion.a

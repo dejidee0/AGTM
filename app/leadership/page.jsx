@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Linkedin, Globe, Award, Users, Target, Heart } from "lucide-react";
+import { useState } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 
 const LeadershipPage = () => {
+  const [expandedMember, setExpandedMember] = useState(null);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -28,27 +31,65 @@ const LeadershipPage = () => {
       bio: "Crypto market analyst with deep expertise in blockchain, stablecoins, and Web3 adoption. Helps fintech brands expand into African markets through strategic insights and regulatory understanding.",
       image: "/victor.jpg",
       skills: ["Market Analysis", "Strategic Planning", "Campaign Development"],
+      linkedin: "https://www.linkedin.com/in/victor-solomon-profile/",
+    },
+    {
+      name: "Keziah Aggie Effiong",
+      role: "West Africa Lead",
+      bio: "Crypto market analyst with deep expertise in blockchain, stablecoins, and Web3 adoption. Helps fintech brands expand into African markets through strategic insights and regulatory understanding.",
+      image: "/kezzie.jpg",
+      skills: ["Market Analysis", "Strategic Planning", "Campaign Development"],
+      linkedin: "https://www.linkedin.com/in/keziah-aggie-effiong-profile/",
     },
     {
       name: "Noah Azube",
       role: "Partnerships Manager",
-      bio: "Partnerships expert with a strong network across Africa’s tech scene. Former business development lead at a major telecom company.",
+      bio: "Web3 Marketer | DevRel | Software Developer | Community BuilderA dynamic force at the intersection of tech and community. I connect Web3 innovation with real human impact—coding by day, scaling communities by night, and bridging devs with the tools they need to thrive. Whether it's building decentralized solutions or growing ecosystems, I get things done. With great passion for African growth. Hobbies: Planetary researcher (ever wondered why the planet is green?), travelling, and chasing knowledge with new perspectives. Let’s build the future—together.",
       image: "/noah.jpg",
       skills: [
         "Business Development",
         "Relationship Building",
         "Deal Structuring",
       ],
+      linkedin: "https://www.linkedin.com/in/noah-azube-profile/",
+    },
+    {
+      name: "Jeffery Ilori",
+      role: "Partnerships Manager",
+      bio: "Jeff is a crypto trailblazer specializing in industry partnerships and marketing for Web3 innovations. He is experienced in client relations, and possesses a track record of forging strategic partnerships that accelerate market share and brand visibility in the crypto landscape. He is dedicated to guiding foreign brands into Africa’s explosive crypto ecosystem and as a result, unlock opportunities through local regulatory navigation, cultural insights about the African market and savvy blockchain strategies. He aspires to drive economic empowerment across the continent via decentralized technology.",
+      image: "/jeff.jpg",
+      skills: [
+        "Business Development",
+        "Relationship Building",
+        "Deal Structuring",
+      ],
+      linkedin: "https://www.linkedin.com/in/jeffrey-ilori-256a47b1",
     },
   ];
 
-  const ceoMessage = `Web3 Marketer | DevRel | Software Developer | Community Builder
+  const ceoMessage = `
+Business Development & GTM Strategist | Scaling Ecosystems | Partnerships & Market Expansion
+I’m God’spower Effiong, Founder & CEO of AGTM Partner.
 
-A dynamic force at the intersection of tech and community. I connect Web3 innovation with real human impact—coding by day, scaling communities by night, and bridging devs with the tools they need to thrive. Whether it's building decentralized solutions or growing ecosystems, I get things done. With great passion for African growth. 
+With over 7 years of experience helping leading Web3, fintech, and AI brands scale across Africa, I specialize in go-to-market strategy, business development, partnerships, and operations. My career has been about one thing: bridging global innovation with local opportunity.
 
-Hobbies: Planetary researcher (ever wondered why the planet is green?), travelling, and chasing knowledge with new perspectives.
+I’ve had the privilege of working with some of the world’s top digital and blockchain brands, including Ledger, Bitget, NMKR, Minutes Network, NumericoAI, and BoundlessPay. From brokering landmark deals to driving user adoption at scale, my focus has always been on helping companies enter Africa with confidence and grow sustainably.
 
-Let’s build the future—together.`;
+At Ledger, I led partnerships and wallet integration initiatives with both local and global exchanges, secured enterprise sales, and brokered the Ledger x Jumia Nigeria deal, making hardware wallets more accessible to everyday Africans. At Bitget, I served as Head of P2P Africa, scaling daily trading volumes to $1M+, while opening 5 new markets through merchant onboarding, payment solutions, and targeted campaigns. At BoundlessPay, I shaped the company’s go-to-market roadmap as COO, improving product adoption and leading cross-functional operations.
+
+Beyond product launches and partnerships, I’ve been deeply involved in ecosystem building, scaling communities by 6x at NumericoAI, driving Web3 education for 5,000+ Nigerian youths through NYSC, and sealing landmark partnerships such as NMKR x African Football Federation. I’ve also been trusted to represent these brands on stage as a speaker at 15+ blockchain conferences across Nigeria, Kenya, Ghana, and South Africa.
+
+At AGTM Partner, my mission is simple: to help Web3, AI, and digital brands launch, scale, and thrive in Africa by providing the strategy, partnerships, and execution needed to succeed in one of the most dynamic markets in the world.
+`;
+
+  const toggleBio = (index) => {
+    setExpandedMember(expandedMember === index ? null : index);
+  };
+
+  const truncateBio = (bio, maxLength = 200) => {
+    if (bio.length <= maxLength) return bio;
+    return bio.slice(0, maxLength) + "...";
+  };
 
   return (
     <div className="min-h-screen">
@@ -131,20 +172,12 @@ Let’s build the future—together.`;
                   </p>
                   <div className="flex items-center justify-center space-x-4">
                     <motion.a
-                      href="#"
+                      href="https://www.linkedin.com/in/cowboigp/"
                       className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-300 hover:text-primary hover:bg-primary/10 transition-all duration-200"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       <Linkedin size={18} />
-                    </motion.a>
-                    <motion.a
-                      href="#"
-                      className="w-10 h-10 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-300 hover:text-primary hover:bg-primary/10 transition-all duration-200"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      <Globe size={18} />
                     </motion.a>
                   </div>
                 </div>
@@ -152,17 +185,21 @@ Let’s build the future—together.`;
 
               <motion.div variants={fadeInUp} className="lg:col-span-2">
                 <div className="space-y-6">
-                  {ceoMessage.split("\n\n").map((paragraph, index) => (
-                    <motion.p
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="text-neutral-300 leading-relaxed text-lg"
+                  <p className="text-neutral-300 leading-relaxed text-lg">
+                    {expandedMember === "ceo"
+                      ? ceoMessage
+                      : truncateBio(ceoMessage)}
+                  </p>
+                  {ceoMessage.length > 100 && (
+                    <motion.button
+                      onClick={() => toggleBio("ceo")}
+                      className="text-primary font-semibold hover:underline"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      {paragraph}
-                    </motion.p>
-                  ))}
+                      {expandedMember === "ceo" ? "Read Less" : "Read More"}
+                    </motion.button>
+                  )}
                 </div>
 
                 <motion.div
@@ -178,19 +215,43 @@ Let’s build the future—together.`;
                     <li className="flex items-center space-x-3">
                       <Award className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-neutral-300">
-                        Former Growth & Partnerships Lead at Ledger
+                        Ledger – Africa Outreach Manager (Partnerships, Wallet
+                        Integrations, Enterprise Sales)
                       </span>
                     </li>
                     <li className="flex items-center space-x-3">
                       <Target className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-neutral-300">
-                        Strategic Advisor at Bitget for African Markets
+                        Bitget – Head of P2P Africa (Scaled to $1M+ daily
+                        volume, expanded into 5 new markets)
                       </span>
                     </li>
                     <li className="flex items-center space-x-3">
                       <Users className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="text-neutral-300">
-                        Led market entry strategy for BoundlessPay
+                        BoundlessPay – Chief Operating Officer (GTM Strategy,
+                        Operations, Partnerships)
+                      </span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <Users className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-neutral-300">
+                        NMKR – Africa Representative (NFT partnership with
+                        African Football Federation, regional brand growth)
+                      </span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <Users className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-neutral-300">
+                        NumericoAI – Business Development & Community Growth (6x
+                        community growth, NYSC Web3 education reaching 5,000+)
+                      </span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <Users className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-neutral-300">
+                        Minutes Network – Partnerships & Operations (SDK
+                        integrations and early-stage GTM support)
                       </span>
                     </li>
                     <li className="flex items-center space-x-3">
@@ -253,9 +314,20 @@ Let’s build the future—together.`;
                       {member.role}
                     </p>
                     <p className="text-neutral-300 text-sm mb-4 leading-relaxed">
-                      {member.bio}
+                      {expandedMember === index
+                        ? member.bio
+                        : truncateBio(member.bio)}
                     </p>
-
+                    {member.bio.length > 100 && (
+                      <motion.button
+                        onClick={() => toggleBio(index)}
+                        className="text-primary font-semibold hover:underline mb-4"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {expandedMember === index ? "Read Less" : "Read More"}
+                      </motion.button>
+                    )}
                     <div className="space-y-2">
                       <h4 className="text-sm font-semibold text-neutral-400">
                         Specialties:
@@ -273,7 +345,7 @@ Let’s build the future—together.`;
                     </div>
 
                     <motion.a
-                      href="#"
+                      href={member.linkedin}
                       className="inline-flex items-center justify-center w-10 h-10 bg-neutral-100 rounded-full text-neutral-300 hover:text-primary hover:bg-primary/10 transition-all duration-200 mt-4"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}

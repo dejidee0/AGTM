@@ -44,7 +44,7 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: "Call Us",
-      details: "+234 XXX XXX XXXX",
+      details: "+2349154100476",
       subtitle: "Mon-Fri 9AM-6PM WAT",
     },
     {

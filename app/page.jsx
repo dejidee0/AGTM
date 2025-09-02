@@ -25,7 +25,7 @@ const HomePage = () => {
   };
 
   const pastClients = [
-    { name: "Ledger", logo: "/clients/ledger.jpg" }, // Corrected typo: 'ledget' to 'ledger'
+    { name: "Ledger", logo: "/clients/ledget.jpg" }, // Corrected typo: 'ledget' to 'ledger'
     { name: "Bitget", logo: "/clients/bitget.jpg" },
     { name: "BoundlessPay", logo: "/clients/boundlesspay.jpg" },
     { name: "Bitmana", logo: "/clients/bitmana.jpg" },
@@ -86,7 +86,7 @@ const HomePage = () => {
         {/* Background */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg"
+            src="/hero1.jpg"
             alt="African Digital Innovation"
             fill
             className="object-cover opacity-80"
@@ -103,7 +103,7 @@ const HomePage = () => {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-neutral-400 mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -115,7 +115,7 @@ const HomePage = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl text-neutral-700 mb-8 leading-relaxed"
+              className="text-lg sm:text-xl text-white mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -301,6 +301,15 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
         </div>
+      </section>
+      <section className="relative w-full h-[25vh]">
+        <Image
+          src="/banner.jpg"
+          alt="Hero Banner"
+          fill
+          style={{ objectFit: "contain" }}
+          priority
+        />
       </section>
 
       {/* CTA Section */}

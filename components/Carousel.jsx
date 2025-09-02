@@ -50,3 +50,4 @@ const Carousel = ({ items, title }) => {
 };
 
 export default Carousel;
+
