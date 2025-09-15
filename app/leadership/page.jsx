@@ -44,7 +44,7 @@ const LeadershipPage = () => {
     {
       name: "Noah Azube",
       role: "Partnerships Manager",
-      bio: "Web3 Marketer | DevRel | Software Developer | Community BuilderA dynamic force at the intersection of tech and community. I connect Web3 innovation with real human impact—coding by day, scaling communities by night, and bridging devs with the tools they need to thrive. Whether it's building decentralized solutions or growing ecosystems, I get things done. With great passion for African growth. Hobbies: Planetary researcher (ever wondered why the planet is green?), travelling, and chasing knowledge with new perspectives. Let’s build the future—together.",
+      bio: "Web3 Marketer | DevRel | Software Developer | Community Builder. A dynamic force at the intersection of tech and community. I connect Web3 innovation with real human impact—coding by day, scaling communities by night, and bridging devs with the tools they need to thrive. Whether it's building decentralized solutions or growing ecosystems, I get things done. With great passion for African growth. Hobbies: Planetary researcher (ever wondered why the planet is green?), travelling, and chasing knowledge with new perspectives. Let’s build the future—together.",
       image: "/noah.jpg",
       skills: [
         "Business Development",
@@ -65,10 +65,37 @@ const LeadershipPage = () => {
       ],
       linkedin: "https://www.linkedin.com/in/jeffrey-ilori-256a47b1",
     },
+    {
+      name: "Edima Essien",
+      role: "Customer Success Manager",
+      bio: "With a first-class degree in advertising and marketing, Edima ensures client satisfaction by delivering tailored solutions for Web3 and fintech brands entering African markets. Her expertise in customer engagement and market insights drives successful onboarding and long-term partnerships.",
+      image: "/edima.jpg",
+      skills: [
+        "Customer Engagement",
+        "Client Onboarding",
+        "Market Insights",
+        "Relationship Management",
+      ],
+      linkedin: "https://www.linkedin.com/in/edima-essien-profile/",
+    },
+    {
+      name: "Mano Terah",
+      role: "Social Media Manager",
+      bio: "Mano crafts compelling social media strategies to amplify brand presence in Africa’s digital landscape. Specializing in Web3 and fintech, he drives engagement and builds communities through creative campaigns and localized content.",
+      image: "/mano.jpg",
+      skills: [
+        "Social Media Strategy",
+        "Content Creation",
+        "Community Engagement",
+        "Brand Amplification",
+      ],
+      linkedin: "https://www.linkedin.com/in/mano-terah-profile/",
+    },
   ];
+  const ceoQualifications =
+    "Business Development & GTM Strategist | Scaling Ecosystems | Partnerships & Market Expansion";
 
   const ceoMessage = `
-Business Development & GTM Strategist | Scaling Ecosystems | Partnerships & Market Expansion
 I’m God’spower Effiong, Founder & CEO of AGTM Partner.
 
 With over 7 years of experience helping leading Web3, fintech, and AI brands scale across Africa, I specialize in go-to-market strategy, business development, partnerships, and operations. My career has been about one thing: bridging global innovation with local opportunity.
@@ -185,6 +212,9 @@ At AGTM Partner, my mission is simple: to help Web3, AI, and digital brands laun
 
               <motion.div variants={fadeInUp} className="lg:col-span-2">
                 <div className="space-y-6">
+                  <p className="text-xl font-extrabold text-neutral-400 mb-4">
+                    {ceoQualifications}
+                  </p>
                   <p className="text-neutral-300 leading-relaxed text-lg">
                     {expandedMember === "ceo"
                       ? ceoMessage

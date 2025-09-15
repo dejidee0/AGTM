@@ -17,6 +17,10 @@ import {
   ArrowRight,
   Building,
   Coins,
+  Database,
+  BarChart,
+  Handshake,
+  Rocket,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 
@@ -55,7 +59,7 @@ const ServicesPage = () => {
     },
     {
       id: "p2p",
-      title: "P2P Solutions",
+      title: "Africa’s Largest P2P Merchant Access Database",
       subtitle: "For Crypto & Fintech",
       icon: Coins,
       color: "accent",
@@ -234,59 +238,58 @@ const ServicesPage = () => {
 
   const p2pServices = [
     {
-      id: "affiliate-programs",
-      icon: Users,
-      title: "Affiliate Programs",
+      id: "merchant-database",
+      icon: Database,
+      title: "Verified P2P Merchant Database",
       description:
-        "Design and manage performance-based affiliate marketing programs.",
+        "Access one of the most comprehensive databases of active P2P merchants across Nigeria, Ghana, Kenya, South Africa, and beyond.",
       features: [
-        "Affiliate network setup",
-        "Commission structure design",
-        "Performance tracking systems",
-        "Partner onboarding & training",
+        "Segmented by market, token, and payment rail",
+        "Reputation-based merchant verification",
+        "Regularly updated merchant data",
+        "Multi-country coverage",
       ],
     },
     {
-      id: "exchange-wallet",
-      icon: Globe,
-      title: "Exchange & Wallet Partnerships",
+      id: "market-insights",
+      icon: BarChart,
+      title: "Market Insights & Regulatory Reports",
       description:
-        "Strategic partnerships with leading exchanges and wallet providers.",
+        "Stay ahead with detailed insights on trading volumes, token preferences, and payment rails, plus regulatory landscapes.",
       features: [
-        "Partnership negotiation",
-        "Integration planning",
-        "Co-marketing initiatives",
-        "Technical collaboration",
+        "Trading volume analysis",
+        "Token and payment rail trends",
+        "Country-specific regulatory updates",
+        "Actionable market entry insights",
       ],
     },
     {
-      id: "token-launch",
-      icon: Zap,
-      title: "Token Launch Support",
+      id: "partner-matchmaking",
+      icon: Handshake,
+      title: "Partner Matchmaking Services",
       description:
-        "End-to-end support for cryptocurrency and token launch initiatives.",
+        "Optional premium service to connect with trusted liquidity partners for seamless market entry.",
       features: [
-        "Tokenomics consultation",
-        "Launch strategy development",
-        "Community building pre-launch",
-        "Post-launch optimization",
+        "Curated partner introductions",
+        "Liquidity provider vetting",
+        "Customized partnership strategies",
+        "Ongoing support for collaborations",
       ],
     },
     {
-      id: "payment-gateway",
-      icon: TrendingUp,
-      title: "Payment Gateway Integration",
+      id: "market-access",
+      icon: Rocket,
+      title: "Strategic Market Access Tool",
       description:
-        "Seamless integration of payment solutions for P2P transactions.",
+        "Cut entry time into African markets by up to 70% with our strategic tools and expertise.",
       features: [
-        "Gateway selection & setup",
-        "API integration support",
-        "Security implementation",
-        "Transaction optimization",
+        "Accelerated market entry planning",
+        "Localized strategy development",
+        "Cross-border expansion support",
+        "Expert consultation",
       ],
     },
   ];
-
   const toggleDropdown = (serviceId) => {
     setOpenDropdown(openDropdown === serviceId ? null : serviceId);
   };
@@ -454,7 +457,7 @@ const ServicesPage = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl lg:text-5xl font-bold text-neutral-800 mb-6">
-              Our <span className="text-gradient">Services</span>
+              Our <span className="text-primary">Services</span>
             </h1>
             <p className="text-lg lg:text-xl text-neutral-600 leading-relaxed mb-8">
               Comprehensive Go-To-Market solutions designed to accelerate your
@@ -576,8 +579,9 @@ const ServicesPage = () => {
               {activeCategory === "p2p" && (
                 <div className="bg-white p-6 rounded-xl border border-neutral-100 max-w-4xl mx-auto">
                   <p className="text-lg text-neutral-600">
-                    Specialized services for peer-to-peer merchants and
-                    cryptocurrency trading platforms across Africa.
+                    Exclusive access to Africa’s leading P2P merchants, helping
+                    global brands scale faster with trusted local liquidity
+                    partners.
                   </p>
                 </div>
               )}
@@ -645,7 +649,7 @@ const ServicesPage = () => {
                 >
                   <Link
                     href="/contact"
-                    className="inline-flex items-center px-6 py-3 bg-secondary text-white rounded-full font-semibold hover:bg-secondary/90 transition-all duration-200"
+                    className="inline-flex items-center px-6 py-3 bg-secondary text-black rounded-full font-semibold hover:bg-secondary/90 transition-all duration-200"
                   >
                     Get Started Today
                     <ArrowRight className="ml-2 w-4 h-4" />

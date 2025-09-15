@@ -79,7 +79,6 @@ const HomePage = () => {
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Navbar />
-      <Popup />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden">
@@ -92,7 +91,8 @@ const HomePage = () => {
             className="object-cover opacity-80"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
+          {/* Darker overlay for better contrast */}
+          <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -103,7 +103,7 @@ const HomePage = () => {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -115,7 +115,7 @@ const HomePage = () => {
             </motion.h1>
 
             <motion.p
-              className="text-lg sm:text-xl text-white mb-8 leading-relaxed"
+              className="text-lg sm:text-xl text-white mb-8 leading-relaxed drop-shadow-md"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -249,7 +249,7 @@ const HomePage = () => {
               <motion.div variants={fadeInUp} className="relative">
                 <div className="relative rounded-2xl overflow-hidden">
                   <Image
-                    src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg"
+                    src="/team.jpg"
                     alt="African Innovation"
                     width={600}
                     height={400}

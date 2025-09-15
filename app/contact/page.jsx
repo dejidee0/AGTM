@@ -9,6 +9,10 @@ import {
   Send,
   CheckCircle,
   AlertCircle,
+  Instagram,
+  X,
+  Linkedin,
+  Twitter,
 } from "lucide-react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
@@ -52,6 +56,24 @@ const ContactPage = () => {
       title: "Visit Us",
       details: "Lagos, Nigeria",
       subtitle: "Schedule an appointment",
+    },
+  ];
+
+  const socialLinks = [
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/agtmpartner",
+      ariaLabel: "Instagram",
+    },
+    {
+      icon: Twitter,
+      href: "https://x.com/agtmpartnerx",
+      ariaLabel: "X (Twitter)",
+    },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/company/agtm-partner",
+      ariaLabel: "LinkedIn",
     },
   ];
 
@@ -102,7 +124,7 @@ const ContactPage = () => {
             className="max-w-4xl mx-auto text-center"
           >
             <h1 className="text-4xl lg:text-5xl font-bold text-neutral-400 mb-6">
-              Let&apos;s <span className="text-gradient">Connect</span>
+              Let&apos;s <span className="text-primary">Connect</span>
             </h1>
             <p className="text-lg lg:text-xl text-neutral-300 leading-relaxed">
               Ready to accelerate your growth in Africa&apos;s digital economy?
@@ -128,7 +150,8 @@ const ContactPage = () => {
               </h2>
               <p className="text-lg text-neutral-300 max-w-3xl mx-auto">
                 Multiple ways to reach us. Choose what works best for you, and
-                we&apos;ll get back to you promptly.
+                we&apos;ll get back to you promptly. You can also connect with
+                us on social media.
               </p>
             </motion.div>
 
@@ -157,6 +180,32 @@ const ContactPage = () => {
                 </motion.div>
               ))}
             </div>
+
+            {/* Social Media Links */}
+            <motion.div variants={fadeInUp} className="text-center">
+              <h3 className="text-xl font-bold text-neutral-400 mb-6">
+                Connect on Social Media
+              </h3>
+              <div className="flex justify-center space-x-6">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.ariaLabel}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.ariaLabel}
+                    className="w-12 h-12 bg-neutral-100 rounded-full flex items-center justify-center text-neutral-600 hover:text-primary hover:bg-primary/10 transition-all duration-200"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <social.icon size={20} />
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </section>
