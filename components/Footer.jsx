@@ -3,7 +3,15 @@
 import Link from "next/link";
 import Image from "next/image"; // Import next/image
 import { motion } from "framer-motion";
-import { Linkedin, Twitter, Mail, Phone } from "lucide-react";
+import {
+  Linkedin,
+  Twitter,
+  Mail,
+  Phone,
+  Instagram,
+  Code2,
+  Sparkles,
+} from "lucide-react";
 
 const Footer = () => {
   const socialLinks = [
@@ -119,9 +127,75 @@ const Footer = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <p className="text-neutral-300 text-sm">
-            © 2025 AGTM Partner. All rights reserved.
-          </p>
+          <div className="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-8">
+            <p className="text-neutral-300 text-sm">
+              © 2025 AGTM Partner. All rights reserved.
+            </p>
+
+            {/* Codemonk Credit */}
+            <motion.a
+              href="https://www.instagram.com/mikevibes__" // Replace with actual IG link
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-gradient-to-r from-neutral-100 to-neutral-50 border border-neutral-200/50 hover:border-primary/30 transition-all duration-300 hover:shadow-md hover:shadow-primary/10"
+              whileHover={{ scale: 1.02, y: -1 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {/* Animated background gradient */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/5 to-purple-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Sparkle effect */}
+              <motion.div
+                className="absolute -top-1 -right-1 text-primary/60"
+                animate={{
+                  rotate: [0, 360],
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              >
+                <Sparkles size={12} />
+              </motion.div>
+
+              <motion.div
+                className="text-primary group-hover:text-primary/80 transition-colors duration-200"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5,
+                }}
+              >
+                <Code2 size={16} />
+              </motion.div>
+
+              <span className="text-sm font-medium text-neutral-600 group-hover:text-neutral-700 transition-colors duration-200 relative z-10">
+                Built by{" "}
+                <span className="font-semibold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent group-hover:from-primary/80 group-hover:to-purple-600/80 transition-all duration-300">
+                  Codewithmonk Technology
+                </span>
+              </span>
+
+              <motion.div
+                className="text-primary/60 group-hover:text-primary/80 transition-colors duration-200"
+                whileHover={{ scale: 1.1 }}
+              >
+                <Instagram size={14} />
+              </motion.div>
+
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 rounded-full bg-primary/10 opacity-0 group-hover:opacity-20 blur-xl transition-all duration-300 -z-10" />
+            </motion.a>
+          </div>
+
           <div className="flex space-x-6 mt-4 sm:mt-0">
             <Link
               href="#"

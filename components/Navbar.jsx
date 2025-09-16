@@ -61,10 +61,10 @@ const Navbar = () => {
               <motion.div key={item.href} whileHover={{ y: -2 }}>
                 <Link
                   href={item.href}
-                  className="text-neutral-400 hover:text-primary font-medium transition-colors duration-200 relative group"
+                  className="text-neutral-400 hover:text-primary-light font-medium transition-colors duration-200 relative group"
                 >
                   {item.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-200 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-light transition-all duration-200 group-hover:w-full"></span>
                 </Link>
               </motion.div>
             ))}

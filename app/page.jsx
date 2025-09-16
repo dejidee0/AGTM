@@ -1,88 +1,141 @@
 "use client";
 
+import { memo, useMemo, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Target, Users, Globe, TrendingUp } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import Popup from "../components/Popup";
-import Carousel from "../components/Carousel";
+
+// Lazy load non-critical components
+const Popup = lazy(() => import("../components/Popup"));
+const Carousel = lazy(() => import("../components/Carousel"));
+
+// Memoized feature card component for better performance
+const FeatureCard = memo(({ feature, variants }) => (
+  <motion.div
+    variants={variants}
+    className="bg-neutral-50 p-6 rounded-xl border border-neutral-100 hover:shadow-lg transition-all duration-300 will-change-transform"
+    whileHover={{ y: -5 }}
+  >
+    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+      <feature.icon className="w-6 h-6 text-primary" />
+    </div>
+    <h3 className="text-lg font-semibold text-neutral-400 mb-2">
+      {feature.title}
+    </h3>
+    <p className="text-neutral-300 text-sm">{feature.description}</p>
+  </motion.div>
+));
+
+FeatureCard.displayName = "FeatureCard";
+
+// Loading fallback component
+const CarouselSkeleton = () => (
+  <div className="animate-pulse">
+    <div className="flex space-x-4 overflow-hidden">
+      {[...Array(5)].map((_, i) => (
+        <div
+          key={i}
+          className="w-32 h-16 bg-gray-200 rounded-lg flex-shrink-0"
+        />
+      ))}
+    </div>
+  </div>
+);
 
 const HomePage = () => {
-  const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6, ease: "easeOut" },
-  };
+  // Memoize animation variants to prevent recreation
+  const fadeInUp = useMemo(
+    () => ({
+      initial: { opacity: 0, y: 60 },
+      animate: { opacity: 1, y: 0 },
+      transition: { duration: 0.6, ease: "easeOut" },
+    }),
+    []
+  );
 
-  const staggerContainer = {
-    animate: {
-      transition: {
-        staggerChildren: 0.1,
+  const staggerContainer = useMemo(
+    () => ({
+      animate: {
+        transition: {
+          staggerChildren: 0.1,
+        },
       },
-    },
-  };
+    }),
+    []
+  );
 
-  const pastClients = [
-    { name: "Ledger", logo: "/clients/ledget.jpg" }, // Corrected typo: 'ledget' to 'ledger'
-    { name: "Bitget", logo: "/clients/bitget.jpg" },
-    { name: "BoundlessPay", logo: "/clients/boundlesspay.jpg" },
-    { name: "Bitmana", logo: "/clients/bitmana.jpg" },
-    { name: "Dx-Sale", logo: "/clients/dx-sale.jpg" },
-    { name: "Gcs", logo: "/clients/gcs.jpg" },
-    { name: "Kucoin", logo: "/clients/kucoin.jpg" },
-    { name: "Minutes", logo: "/clients/minutes.jpg" },
-    { name: "MMKR", logo: "/clients/nmkr.jpg" },
-    { name: "Numerico", logo: "/clients/numerico.jpg" },
-    { name: "Whitebit", logo: "/clients/whitebit.jpg" },
-    { name: "World Mobile", logo: "/clients/world-mobile.jpg" },
-    { name: "AshToken", logo: "/clients/ashtoken.jpg" },
-  ];
+  // Memoize static data to prevent recreation
+  const pastClients = useMemo(
+    () => [
+      { name: "Ledger", logo: "/clients/ledget.jpg" },
+      { name: "Bitget", logo: "/clients/bitget.jpg" },
+      { name: "BoundlessPay", logo: "/clients/boundlesspay.jpg" },
+      { name: "Bitmana", logo: "/clients/bitmana.jpg" },
+      { name: "Dx-Sale", logo: "/clients/dx-sale.jpg" },
+      { name: "Gcs", logo: "/clients/gcs.jpg" },
+      { name: "Kucoin", logo: "/clients/kucoin.jpg" },
+      { name: "Minutes", logo: "/clients/minutes.jpg" },
+      { name: "MMKR", logo: "/clients/nmkr.jpg" },
+      { name: "Numerico", logo: "/clients/numerico.jpg" },
+      { name: "Whitebit", logo: "/clients/whitebit.jpg" },
+      { name: "World Mobile", logo: "/clients/world-mobile.jpg" },
+      { name: "AshToken", logo: "/clients/ashtoken.jpg" },
+    ],
+    []
+  );
 
-  const partners = [
-    { name: "Exchange Pro" },
-    { name: "Fintech Hub" },
-    { name: "Digital Bank" },
-    { name: "Crypto Exchange" },
-    { name: "Mobile Money" },
-    { name: "Telco Partner" },
-  ];
+  const partners = useMemo(
+    () => [
+      { name: "Exchange Pro" },
+      { name: "Fintech Hub" },
+      { name: "Digital Bank" },
+      { name: "Crypto Exchange" },
+      { name: "Mobile Money" },
+      { name: "Telco Partner" },
+    ],
+    []
+  );
 
-  const features = [
-    {
-      icon: Target,
-      title: "Market Entry Strategy",
-      description:
-        "Strategic guidance for entering African digital markets with confidence and precision.",
-    },
-    {
-      icon: Users,
-      title: "Partnership Development",
-      description:
-        "Building meaningful relationships with key stakeholders across the continent.",
-    },
-    {
-      icon: Globe,
-      title: "Global Reach",
-      description:
-        "Connecting international brands with Africa's rapidly growing digital economy.",
-    },
-    {
-      icon: TrendingUp,
-      title: "Growth Marketing",
-      description:
-        "Data-driven marketing strategies tailored for Web3 and fintech growth.",
-    },
-  ];
+  const features = useMemo(
+    () => [
+      {
+        icon: Target,
+        title: "Market Entry Strategy",
+        description:
+          "Strategic guidance for entering African digital markets with confidence and precision.",
+      },
+      {
+        icon: Users,
+        title: "Partnership Development",
+        description:
+          "Building meaningful relationships with key stakeholders across the continent.",
+      },
+      {
+        icon: Globe,
+        title: "Global Reach",
+        description:
+          "Connecting international brands with Africa's rapidly growing digital economy.",
+      },
+      {
+        icon: TrendingUp,
+        title: "Growth Marketing",
+        description:
+          "Data-driven marketing strategies tailored for Web3 and fintech growth.",
+      },
+    ],
+    []
+  );
 
   return (
     <div className="min-h-screen overflow-x-hidden">
       <Navbar />
 
-      {/* Hero Section */}
+      {/* Hero Section - Optimized with better image loading */}
       <section className="relative min-h-screen flex items-center justify-center overflow-x-hidden">
-        {/* Background */}
+        {/* Background - Optimized with WebP format hint and proper sizing */}
         <div className="absolute inset-0 z-0">
           <Image
             src="/hero1.jpg"
@@ -90,6 +143,10 @@ const HomePage = () => {
             fill
             className="object-cover opacity-80"
             priority
+            quality={85}
+            sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
           />
           {/* Darker overlay for better contrast */}
           <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-black/30" />
@@ -103,13 +160,13 @@ const HomePage = () => {
             className="max-w-4xl mx-auto"
           >
             <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg"
+              className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 drop-shadow-lg will-change-transform"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               Your Gateway to{" "}
-              <span className="text-primary">
+              <span className="text-primary-light">
                 Africa&lsquo;s Digital Economy
               </span>
             </motion.h1>
@@ -134,10 +191,12 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="will-change-transform"
               >
                 <Link
                   href="/contact"
                   className="inline-flex items-center px-8 py-4 bg-secondary text-neutral-400 rounded-full font-semibold text-lg hover:bg-secondary/90 transition-all duration-200 neon-glow"
+                  prefetch={true}
                 >
                   Get Started
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -146,10 +205,12 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="will-change-transform"
               >
                 <Link
                   href="/services"
-                  className="inline-flex items-center px-8 py-4 border border-primary text-primary rounded-full font-semibold text-lg hover:bg-primary/10 transition-all duration-200"
+                  className="inline-flex items-center px-8 py-4 border border-primary-light text-primary-light rounded-full font-semibold text-lg hover:bg-primary/10 transition-all duration-200"
+                  prefetch={true}
                 >
                   Our Services
                 </Link>
@@ -157,28 +218,28 @@ const HomePage = () => {
             </motion.div>
           </motion.div>
 
-          {/* Floating Elements */}
+          {/* Floating Elements - Optimized with will-change */}
           <motion.div
-            className="absolute top-1/4 left-4 sm:left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl hidden sm:block"
+            className="absolute top-1/4 left-4 sm:left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl hidden sm:block will-change-transform"
             animate={{ y: [-20, 20, -20], x: [-10, 10, -10] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-4 sm:right-10 w-16 h-16 bg-secondary/30 rounded-full blur-lg hidden sm:block"
+            className="absolute bottom-1/4 right-4 sm:right-10 w-16 h-16 bg-secondary/30 rounded-full blur-lg hidden sm:block will-change-transform"
             animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
       </section>
 
-      {/* Business Overview */}
+      {/* Business Overview - Optimized with memoized components */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
@@ -194,36 +255,25 @@ const HomePage = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {features.map((feature) => (
-                <motion.div
+                <FeatureCard
                   key={feature.title}
+                  feature={feature}
                   variants={fadeInUp}
-                  className="bg-neutral-50 p-6 rounded-xl border border-neutral-100 hover:shadow-lg transition-all duration-300"
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-                    <feature.icon className="w-6 h-6 text-primary" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-neutral-400 mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-neutral-300 text-sm">
-                    {feature.description}
-                  </p>
-                </motion.div>
+                />
               ))}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Company Mission & Vision */}
+      {/* Company Mission & Vision - Optimized image loading */}
       <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="max-w-6xl mx-auto"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -254,11 +304,16 @@ const HomePage = () => {
                     width={600}
                     height={400}
                     className="w-full h-80 object-cover max-w-full"
+                    quality={85}
+                    sizes="(max-width: 768px) 100vw, 600px"
+                    loading="lazy"
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
                   />
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
                 </div>
                 <motion.div
-                  className="absolute -bottom-6 right-0 sm:-right-6 w-24 h-24 bg-secondary rounded-full blur-2xl opacity-60 hidden sm:block"
+                  className="absolute -bottom-6 right-0 sm:-right-6 w-24 h-24 bg-secondary rounded-full blur-2xl opacity-60 hidden sm:block will-change-transform"
                   animate={{ scale: [1, 1.2, 1], opacity: [0.6, 0.8, 0.6] }}
                   transition={{
                     duration: 4,
@@ -272,14 +327,14 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Past Clients & Partners */}
+      {/* Past Clients & Partners - Lazy loaded carousels */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="max-w-6xl mx-auto"
           >
             <motion.div variants={fadeInUp} className="text-center mb-16">
@@ -293,22 +348,32 @@ const HomePage = () => {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="overflow-x-hidden">
-              <Carousel items={pastClients} title="Past Clients" />
+              <Suspense fallback={<CarouselSkeleton />}>
+                <Carousel items={pastClients} title="Past Clients" />
+              </Suspense>
             </motion.div>
 
             <motion.div variants={fadeInUp} className="overflow-x-hidden">
-              <Carousel items={partners} title="Strategic Partners" />
+              <Suspense fallback={<CarouselSkeleton />}>
+                <Carousel items={partners} title="Strategic Partners" />
+              </Suspense>
             </motion.div>
           </motion.div>
         </div>
       </section>
+
+      {/* Banner Section - Optimized */}
       <section className="relative w-full h-[25vh]">
         <Image
           src="/banner.jpg"
           alt="Hero Banner"
           fill
           style={{ objectFit: "contain" }}
-          priority
+          quality={85}
+          sizes="100vw"
+          loading="lazy"
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWGRkbHB0f/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
         />
       </section>
 
@@ -319,7 +384,7 @@ const HomePage = () => {
             variants={staggerContainer}
             initial="initial"
             whileInView="animate"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-100px" }}
             className="max-w-4xl mx-auto"
           >
             <motion.h2
@@ -339,10 +404,12 @@ const HomePage = () => {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                className="will-change-transform"
               >
                 <Link
                   href="/services"
                   className="inline-flex items-center px-8 py-4 bg-primary text-white rounded-full font-semibold text-lg hover:bg-primary/90 transition-all duration-200 neon-glow"
+                  prefetch={true}
                 >
                   Explore Our Services
                   <ArrowRight className="ml-2 w-5 h-5" />
@@ -354,8 +421,10 @@ const HomePage = () => {
       </section>
 
       <Footer />
+
+      {/* Lazy load Popup if needed */}
     </div>
   );
 };
 
-export default HomePage;
+export default memo(HomePage);
