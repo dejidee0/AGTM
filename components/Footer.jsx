@@ -15,8 +15,9 @@ import {
 
 const Footer = () => {
   const socialLinks = [
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Linkedin, href: "https://www.linkedin.com/company/agtm-partner", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/agtmpartner", label: "Instagram" },
+    { icon: Twitter, href: "https://x.com/agtmpartnerx", label: "Twitter" },
     { icon: Mail, href: "mailto:info@agtmpartner.com", label: "Email" },
   ];
 
