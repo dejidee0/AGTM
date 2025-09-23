@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#228B22" />
-        <link rel="icon" href="/layout.jpg" />
+       <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={inter.className}>{children}</body>
     </html>
