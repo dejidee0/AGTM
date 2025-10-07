@@ -82,29 +82,34 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     try {
-      // In a real implementation, this would be a 'contacts' table
-      const { data, error } = await supabase.from("leads").insert([
-        {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
           name: contactForm.name,
-          company: "Contact Form", // Using company field for form type
           email: contactForm.email,
           message: contactForm.message,
-          timestamp: new Date().toISOString(),
-        },
-      ]);
+        }),
+      });
 
-      if (error) throw error;
+      const data = await response.json();
+      console.log("Response:", data);
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed");
+      }
 
       setSubmitStatus("success");
       resetContactForm();
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Error:", error);
       setSubmitStatus("error");
     }
 
     setIsSubmitting(false);
   };
-
   const handleInputChange = (field, value) => {
     updateContactForm(field, value);
     if (submitStatus) setSubmitStatus(""); // Clear status on new input
